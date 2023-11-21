@@ -1,0 +1,831 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : pSimplexe
+ major_version : 28
+ minor_version : 0
+ type : 7
+ description : ""
+ subtype : 0
+procedure_set :
+ identifier : 0x187f23520019382e
+ internal_properties : CAAAAAgAAABGLu41kG7fjQV3iS4F72qmnKaNh5694reolNKIW0iw
+ code_elements :
+  type_code : 31
+  p_codes :
+   -
+     internal_properties : CAAAAAgAAACRY4R6J90dVhFq52jMxyY/0QuOzEY3JwuJsCtG6PUpqXv2uDjlgtVhErnvtmxSKzzhHPi0xtqJrf0khzg1O9d7Ejpr/t7D662H+WHvE5W5yVgyCyJnhp0cVw+Uz/QUpFem8uac20Erqaq8bTY=
+     code : |1+
+      // Structure representing a variable
+      SimplexeVariable is Structure
+      	sName   is string // Name of the variable
+      	bRatio is boolean // Defines whether the variable is differential variable or not
+      END
+      
+      // Array of variables
+      gaaListVariable is ASSOCIATIVE ARRAY of SimplexeVariable dynamic
+      
+      // Array of totals
+      gaaListTotal    is array dynamic of 1 real
+      
+      // Array of simplexe
+      gaaSimplexe      is array dynamic of 1 by 1 real
+      
+      // List of variables in database
+      gaaListVariableInBase is array dynamic of 1 SimplexeVariable dynamic
+      
+      // Current errors
+      sError is string
+      bError is boolean
+      
+      // Number of constraints
+      nNbConstraint is int
+     type : 720896
+  procedures :
+   -
+     name : AddVariable
+     internal_properties : CAAAAAgAAADBs4QOA9dPDtIpJFbBzeSjPGEVZPFC/NWZkwqm5FFHJ2UITmxrdOkhrK8/MJSiZU5DvtLcwHjAEmi3/uOyPjzeNz/CEW9yDl7+mEii6DAWBBcyhmuUoqzeg3Tb25hiQCTVeOOMKwvjpaoMPWY=
+     procedure_id : 1765170991028919552
+     type_code : 15
+     code : |1+
+      // Summary: Procedure used to add a variable into the system of the Simplexe
+      // Syntax:
+      //[ <Result> = ] AddVariable (<sName> is string [, <bDifference>])
+      //
+      // Parameters:
+      //	sName (string): Name of the variable
+      //	bDifference (default value=0): <specify the role of bDifference>
+      // Return value:
+      // 	boolean: Returns True if everything was successfully performed, False otherwise.
+      //
+      // Example:
+      //	AddVariable("x1")
+      PROCEDURE AddVariable(sName is string, bRatio=False)
+      
+      // Variable
+      pstVariable is SimplexeVariable dynamic
+      
+      // Check whether a variable with the same name does not already exist
+      IF NOT gaaListVariable[sName]..Empty THEN
+      	_StartError(<§@187f234d001722d10000§>)
+      	RESULT False
+      END
+      
+      // Add the variable.
+      pstVariable = new SimplexeVariable
+      pstVariable:bRatio = bRatio
+      pstVariable:sName = sName
+      
+      gaaListVariable[sName] = pstVariable
+      
+      RESULT True
+     type : 458752
+   -
+     name : AddConstraint
+     internal_properties : CAAAAAgAAACerzG6j2x4xWJ0dVw7Td9o8IcyP+JhpbQ1OQQoHI3IxeoVdXvrfa3sdaBVnYT8Tq9I/TESCtoYH74skW08n54RjKrqsw1jEhXydYOw0M9EWYYrQhne6X5zUblOXUD/7CtO86UIjyTliFHSuiFF
+     procedure_id : 1765171549374732402
+     type_code : 15
+     code : |1+
+      // Summary: The procedure is used to add a constraint to the linear system
+      // Syntax:
+      //[ <Result> = ] AddConstraint ([...])
+      //
+      // Parameters:
+      // 	<*>: <specify the role of <*>>
+      // Return value:
+      // 	boolean: // 	bOK is boolean
+      //  The procedure returns False if an error occurred, otherwise it returns True
+      //  For more information, the user can call ErrorInformation()
+      //
+      // Example:
+      // AddConstraint(5/3,2,5,20) will be interpreted as a constraint of the following type: 5/3(x1) + 2(x2) + 5(x3) < or = 20
+      // 	<*>: The number of coefficients must be equal to the number of variables and it must end with the total of the inequation
+      PROCEDURE AddConstraint(*)
+      
+      // Variable
+      nPosition is int
+      
+      // No constraint can be added if no variable is defined
+      IF gaaListVariable..Occurrence = 0 THEN
+      	_StartError(<§@187f234d001722d10001§>)
+      	RESULT False
+      END
+      
+      // The number of coefficients must correspond to the number of variables, plus the last parameter that is the total of the equation.
+      IF MyParameters..NbReceived <> (gaaListVariable..Occurrence + 1)-nNbConstraint THEN
+      	_StartError(<§@187f234d001722d10002§>)
+      	RESULT False
+      END
+      
+      // Insert an additional constraint
+      nNbConstraint++
+      
+      // Add a differential variable, retrieve its position to define the column where its coefficient must be positioned
+      AddVariable("e"+nNbConstraint,True)
+      nPosition = gaaListVariable..Occurrence
+      
+      // Resize the dynamic array: there is an additional constraint! Therefore, an additional line.
+      Dimension(gaaSimplexe,nNbConstraint,gaaListVariable..Occurrence+1)
+      
+      // Add the coefficients
+      FOR Column = 1 _TO_ MyParameters..NbReceived - 1 
+      	gaaSimplexe[nNbConstraint][Column] = MyParameters[Column]
+      END
+      
+      // Add the coefficient of the differential variable
+      gaaSimplexe[nNbConstraint][nPosition] = 1
+      
+      // Save the total to add it later, at the end of the array (last column) once all the constraints have been specified
+      IF MyParameters[MyParameters..NbReceived] > 0 THEN
+      	Dimension(gaaListTotal,nNbConstraint)
+      	gaaListTotal[nNbConstraint] = MyParameters[MyParameters..NbReceived]
+      ELSE
+      	_StartError(<§@187f234d001722d10008§>)
+      	RESULT False
+      END
+      
+      RESULT True
+      
+     type : 458752
+   -
+     name : MaximizeSimplexe
+     procedure_id : 1765207098819126503
+     type_code : 15
+     code : |1+
+      // Summary: The procedure maximizes the economical function passed in parameter in relation to the specified constraints
+      // Syntax:
+      //[ <Result> = ] MaximizeSimplexe ([...])
+      //
+      // Parameters:
+      // 	<*>: <specify the role of <*>>
+      // Return value:
+      // 	Undefined type: False if an error occurred
+      //
+      // Example:
+      // Maximize(500,12) would correspond to the economical function: 500x + 12y
+      //
+      // 	<*>: Coefficient of the economical function to maximize
+      // 	<*>: List of coefficients of function Z
+      PROCEDURE MaximizeSimplexe(*)
+      
+      // The economical function cannot be added of there is no variable
+      IF gaaListVariable..Occurrence = 0 THEN
+      	_StartError(<§@187f234d001722d10003§>)
+      	RESULT False
+      END
+      
+      // The number of coefficients must correspond to the number of variables
+      IF MyParameters..NbReceived <> (gaaListVariable..Occurrence)-nNbConstraint THEN
+      	_StartError(<§@187f234d001722d10004§>)
+      	RESULT False
+      END
+      
+      // If an error occurred before (wrong variable insertion, etc.)
+      IF EncounteredError() THEN
+      	RESULT False
+      END
+      
+      // Add the economical function
+      nNbConstraint++
+      
+      // Resize the dynamic array, a line must be added for the economical function
+      Dimension(gaaSimplexe,nNbConstraint,gaaListVariable..Occurrence+1)
+      
+      // The coefficients of the economical function
+      FOR Column = 1 _TO_ MyParameters..NbReceived
+      	gaaSimplexe[nNbConstraint][Column] = MyParameters[Column]
+      END
+      
+      // Maximize the data
+      RESULT _Maximize()
+     type : 458752
+   -
+     name : InformationError
+     procedure_id : 1765214451803210809
+     type_code : 15
+     code : |1+
+      // Summary: This procedure returns a string containing a description of the errors that occurred
+      // Syntax:
+      //[ <Result> = ] InformationError ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	string: // Character string containing a description of the errors
+      //
+      // Example:
+      // sString = ErrorInformation()
+      //
+      PROCEDURE InformationError()
+      
+      // Variable
+      sTemp is string
+      
+      // Re-initialization
+      sTemp = sError
+      sError = ""
+      bError = False
+      
+      RESULT sTemp
+     type : 458752
+   -
+     name : _DisplaySimplexe
+     internal_properties : CAAAAAgAAAAZ28xGZ4+XHpIJ9OZ5xWzjVFFVBDEiHH0Rq6KONPEXr3WApjTzvCFhHL/vsFxqPQ6briIcIBisXqxDckceItBqEztu/dvW+rqS9GzmFJS6oIM+AoeAhogqV1Dvj/SGpIAhND/Yt08vfXJE5b4=
+     procedure_id : 1765220649441151248
+     type_code : 15
+     code : |1+
+      // Summary: Private procedure used to trace the algorithm of the simplexe during the resolution
+      // Syntax:
+      //_DisplaySimplexe ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // _DisplaySimplexe()
+      //
+      PROCEDURE PRIVATE _DisplaySimplexe()
+      
+      // Variables
+      sTemp       is string
+      pstVariable is SimplexeVariable dynamic
+      
+      Trace("")
+      
+      // Display the title of the columns
+      FOR ALL ELEMENT pstVariable of gaaListVariable
+      	sTemp += "   "+pstVariable:sName
+      END
+      sTemp += <§@187f234d001722d10005§>
+      Trace(sTemp)
+      sTemp = ""
+      
+      // Display the values
+      FOR I = 1 _TO_ nNbConstraint
+      	FOR J = 1 _TO_ gaaListVariable..Occurrence+1
+      		sTemp += "   "+gaaSimplexe[I][J]
+      	END
+      	Trace(sTemp)
+      	sTemp = ""
+      END
+      
+      Trace("")
+      Trace(<§@187f234d001722d10006§>)
+      
+      FOR ALL ELEMENT pstVariable of gaaListVariableInBase
+      	Trace(pstVariable:sName)
+      END
+      
+     type : 458752
+   -
+     name : EncounteredError
+     procedure_id : 1765226065395189120
+     type_code : 15
+     code : |1+
+      // Summary: Used to find out whether an error occurred
+      // Syntax:
+      //[ <Result> = ] EncounteredError ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	boolean: // Returns True if an error occurred, False otherwise
+      //
+      // Example:
+      // IF ErrorRaised() THEN Error(ErrorInformation())
+      //
+      PROCEDURE EncounteredError()
+      RESULT bError
+     type : 458752
+   -
+     name : _NegativeMargin
+     procedure_id : 1765239117800891888
+     type_code : 15
+     code : |1+
+      // Summary: The procedure returns 0 if all the margins are negatives (or equal to 0), otherwise it returns the column of the greatest positive margin
+      // Syntax:
+      //[ <Result> = ] _NegativeMargin ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	integer: // Column of the selected coefficient
+      //
+      // Example:
+      // nColumn is int
+      // nColumn = _NegativeMargin()
+      //
+      // 	rCoefficient (default value=-1): The parameter is used to exclude a coefficient to use
+      PROCEDURE PRIVATE _NegativeMargin()
+      
+      // Variable
+      rMargin   is real
+      nColumn is int
+      
+      // Initialization
+      rMargin = 0
+      
+      // Browse all the margins, return the greatest one if one ot them is positive, otherwise return False
+      FOR column = 1 _TO_ gaaListVariable..Occurrence
+      	IF gaaSimplexe[nNbConstraint][column] > rMargin THEN
+      		rMargin = gaaSimplexe[nNbConstraint][column]	
+      		nColumn = column	
+      	END
+      END
+      
+      RESULT nColumn
+      
+     type : 458752
+   -
+     name : _InitializeVarInDatabase
+     procedure_id : 1765244946071558949
+     type_code : 15
+     code : |1+
+      // Summary: Initializes the differential variables in database
+      // Syntax:
+      //_InitializeVarInBase ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // _InitializeVarInBase()
+      //
+      PROCEDURE PRIVATE _InitializeVarInDatabase()
+      
+      // Initialize the array
+      Dimension(gaaListVariableInBase,nNbConstraint-1) // Don't count the last line (Z = economical function)
+      
+      // The variables in database are the differential variables
+      FOR nRow = 1 _TO_ nNbConstraint-1
+      	gaaListVariableInBase[nRow] = gaaListVariable["e"+nRow]
+      END
+      
+     type : 458752
+   -
+     name : _InitializeTotals
+     procedure_id : 1765247922484588452
+     type_code : 15
+     code : |1-
+      // Summary: Procedure used to add the totals at the end of the array once the size of this one is fixed
+      // Syntax:
+      //_InitializeTotals ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // _InitializeTotals()
+      //
+      PROCEDURE PRIVATE _InitializeTotals()
+      
+      // In most cases, the size of the array is fixed, the totals can be added
+      FOR nRow = 1 _TO_ nNbConstraint-1 // Don't specify the total of the equation Z at the beginning
+      	gaaSimplexe[nRow][gaaListVariable..Occurrence+1] = gaaListTotal[nRow]
+      END
+     type : 458752
+   -
+     name : _CalculateRatio
+     procedure_id : 1765248407815939489
+     type_code : 15
+     code : |1+
+      // Summary: _CalculateRatio
+      // Syntax:
+      //[ <Result> = ] _CalculateRatio (<nColumn> is int)
+      //
+      // Parameters:
+      //	nColumn (integer): Number of the column of the margin, we are going to calculate the ratio and to use the smallest one to rotate
+      // Return value:
+      // 	integer: // Returns the row of the selected ratio
+      //
+      // Example:
+      // nRow is an integer
+      // nRow = _CalculateRatio(columnCoefficient)
+      //
+      PROCEDURE PRIVATE _CalculateRatio(nColumn is int)
+      
+      // Variable
+      rRatio    is real
+      rMinRatio is real
+      nRow      is int
+      bFirst    is boolean
+      
+      // Initialization
+      nRow = 0
+      bFirst = True
+      
+      // Ratio for a row = Total of the row / Constraint of this row (constraint returned by the column of the margin)
+      FOR tmpLine = 1 _TO_ nNbConstraint-1
+      	IF gaaSimplexe[tmpLine][nColumn] <> 0 THEN
+      		rRatio = gaaSimplexe[tmpLine][gaaListVariable..Occurrence+1] / gaaSimplexe[tmpLine][nColumn]
+      		
+      		IF rRatio > 0 THEN
+      			IF bFirst THEN 
+      				rMinRatio = rRatio
+      				nRow = tmpLine
+      				bFirst = False
+      			ELSE
+      				IF (rRatio < rMinRatio) AND (rRatio > 0) THEN
+      					rMinRatio = rRatio
+      					nRow = tmpLine	
+      				END	
+      			END
+      		END
+      	END
+      END
+      
+      // Return the pivot line
+      RESULT nRow
+      
+     type : 458752
+   -
+     name : _IncludeInDatabase
+     procedure_id : 1765255644835880052
+     type_code : 15
+     code : |1+
+      // Sumary: The variable (characterized b y the column number) is considered as being a resource, therefore we are going to include it in the database.
+      //          The intersection between nRow, nColumn gives the pivot.
+      // Syntax:
+      //_IncludeInBase (<nRow> is int, <nColumn> is int)
+      //
+      // Parameters:
+      //	nRow (integer): row of the pivot
+      //	nColumn (integer): column of the pivot
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // _IncludeInBase(1,2)
+      //
+      PROCEDURE PRIVATE _IncludeInDatabase(nRow is int, nColumn is int)
+      
+      // Variable
+      rPivot                      is real
+      rLineValue                is real
+      rSameValueElOnPivotLine  is real
+      rVariableValueOnSameLine is real
+      rNewValue             is real
+      nCounter                   is int
+      pstVariable                 is SimplexeVariable dynamic
+      tempSimplexe                is array dynamic of nNbConstraint by gaaListVariable..Occurrence+1 real
+      
+      // Initialization
+      rPivot = gaaSimplexe[nRow][nColumn]
+      nCounter = 0
+      
+      // Calculate the new values for all the cells found in the array
+      FOR tmpLine = 1 _TO_ nNbConstraint
+      	FOR column = 1 _TO_ gaaListVariable..Occurrence+1
+      		// If we are not located on the pivot row, the values are calculated in a particular way
+      		IF tmpLine <> nRow THEN
+      			rLineValue = gaaSimplexe[tmpLine][column]
+      			rSameValueElOnPivotLine = gaaSimplexe[nRow][column]
+      			rVariableValueOnSameLine = gaaSimplexe[tmpLine][nColumn]
+      			rNewValue = rLineValue - (rSameValueElOnPivotLine * (rVariableValueOnSameLine / rPivot))
+      			tempSimplexe[tmpLine][column] = rNewValue
+      		ELSE
+      			// The coefficients of the pivot row must be divided by the pivot, that is the reason why the pivot is always set to 1 in the new dictionary
+      			tempSimplexe[tmpLine][column] = gaaSimplexe[tmpLine][column] / rPivot
+      		END
+      	END
+      END
+      
+      // Replace the former dictionary by the new one
+      gaaSimplexe = tempSimplexe
+      
+      // Update the variables in database, find the variable to change
+      FOR ALL ELEMENT pstVariable of gaaListVariable
+      	nCounter++
+      	
+      	IF nCounter = nColumn THEN
+      		gaaListVariableInBase[nRow] = pstVariable
+      	END
+      END
+      
+     type : 458752
+   -
+     name : _StartError
+     procedure_id : 1765484489281707622
+     type_code : 15
+     code : |1+
+      // Sumary: Procedure used to fill the information about the error that occurred.
+      // The user can retrieve this information by using ErrorInformation()
+      // Syntax:
+      //_StartError (<sText> is string)
+      //
+      // Parameters:
+      //	sText (string): Indications about the error
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // _StartError("An unknown error occurred")
+      //
+      PROCEDURE PRIVATE _StartError(sText is string)
+      
+      sError += CR + sText
+      bError = True
+      
+     type : 458752
+   -
+     name : _FormatResult
+     procedure_id : 1765514695786982854
+     type_code : 15
+     code : |1+
+      // Summary: This procedure formats the result to return in a character string
+      // Syntax:
+      //[ <Result> = ] _FormatResult ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	string: //  	 	None
+      //
+      // Example:
+      // Indicate an example.
+      //
+      PROCEDURE PRIVATE _FormatResult()
+      
+      // Variable
+      sResult is string
+      rZ        is real 
+      
+      // Initialization
+      rZ = Abs(gaaSimplexe[nNbConstraint][gaaListVariable..Occurrence+1])
+      sResult = rZ+"|"
+      
+      // Browse the variables in database
+      FOR I = 1 _TO_ gaaListVariableInBase..Occurrence
+      	// If it is not a differential variable, retrieve its coefficient
+      	IF gaaListVariableInBase[I]:bRatio = False THEN
+      		sResult += +gaaSimplexe[I][gaaListVariable..Occurrence+1] +"|"+ gaaListVariableInBase[I]:sName	 +"|"
+      	END
+      END
+      
+      RESULT sResult
+      
+     type : 458752
+   -
+     name : Initialize
+     internal_properties : CAAAAAgAAAAP6d5VqX2/cnDL0KzBdRKJ8icfrC84PNnnVUYUzHEpcbd66PxtlsVtNnXTaqgWeyTt2Pi4xj5zp/MiqRrLZSHByHwlUEwdRQfVn0uBqW9bhygL6YJBBRO3Jn+umpnh3f9OKaZTcNYizoBS86g=
+     procedure_id : 1765570491713038755
+     type_code : 15
+     code : |1-
+      // Summary: Initializes the array of the simplexe
+      // Syntax:
+      //Initialize ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      // Example:
+      // Indicate an example.
+      //
+      PROCEDURE Initialize()
+      
+      // Clear all the arrays for a new use
+      ArrayDeleteAll(gaaListTotal)
+      ArrayDeleteAll(gaaListVariable)
+      ArrayDeleteAll(gaaListVariableInBase)
+      ArrayDeleteAll(gaaSimplexe)
+      
+      // Reset the global variables to 0
+      nNbConstraint = 0
+      sError = ""
+      bError = False
+     type : 458752
+   -
+     name : AddConstraintArray
+     procedure_id : 1765580211218296383
+     type_code : 15
+     code : |1+
+      // Summary: Used to add the constraints passed in an array
+      // Syntax:
+      //[ <Result> = ] AddConstraintArray (<aaListConstraint>)
+      //
+      // Parameters:
+      //	aaListConstraint: <specify the role of aaListConstraint>
+      // Return value:
+      // 	boolean: // 	None
+      //
+      // Example:
+      // aaArray is array of 1 by 2 int
+      // aaArray[1] = 2
+      // aaArray[2] = 4
+      // AddConstraintArray(aaArray)
+      //
+      PROCEDURE AddConstraintArray(aaListConstraint)
+      
+      // Variable
+      nPosition is int
+      
+      // Check the size
+      IF aaListConstraint..Occurrence <> (gaaListVariable..Occurrence+1) - nNbConstraint THEN
+      	_StartError(<§@187f234d001722d10007§>)
+      	RESULT False
+      END
+      
+      // Insert an additional constraint
+      nNbConstraint++
+      
+      // Add a differential variable, retrieve its position to define the column where its coefficient must be positioned
+      AddVariable("e"+nNbConstraint,True)
+      nPosition = gaaListVariable..Occurrence
+      
+      // Resize the dynamic array: there is an additional constraint! Therefore, an additional line.
+      Dimension(gaaSimplexe,nNbConstraint,gaaListVariable..Occurrence+1)
+      
+      // Add the coefficients
+      
+      // Save the constraints
+      FOR Column = 1 _TO_ aaListConstraint..Occurrence-1
+      	gaaSimplexe[nNbConstraint][Column] = aaListConstraint[Column]	
+      END
+      
+      // Add the coefficient of the differential variable
+      gaaSimplexe[nNbConstraint][nPosition] = 1
+      
+      // Save the total to add it later, at the end of the array (last column) once all the constraints have been specified
+      IF aaListConstraint[aaListConstraint..Occurrence] > 0 THEN
+      	Dimension(gaaListTotal,nNbConstraint)
+      	gaaListTotal[nNbConstraint] = aaListConstraint[aaListConstraint..Occurrence]
+      ELSE
+      	_StartError(<§@187f234d001722d10008§>)
+      	RESULT False
+      END
+      
+      RESULT True
+      
+      
+     type : 458752
+   -
+     name : MaximizeSimplexeArray
+     procedure_id : 1765596390360198133
+     type_code : 15
+     code : |1+
+      // Summary: The procedure maximizes the economical function passed in parameter in relation to the specified constraints
+      // Syntax:
+      //[ <Result> = ] MaximizeSimplexeArray (<aaListCoefficient>)
+      //
+      // Parameters:
+      //	aaListCoefficient: List of coefficients for the economical function
+      // Return value:
+      // 	Undefined type: False if an error occurred
+      //
+      // Example:
+      // aaCoeff is array of 2 reals
+      // aaCoeff[1] = 5.2
+      // aaCoeff[2] = 6
+      // Maximize(aaCoeff) would correspond to the economical function: 5.2x + 6y
+      PROCEDURE MaximizeSimplexeArray(aaListCoefficient)
+      
+      // The economical function cannot be added of there is no variable
+      IF gaaListVariable..Occurrence = 0 THEN
+      	_StartError(<§@187f234d001722d10003§>)
+      	RESULT False
+      END
+      
+      // The number of coefficients must correspond to the number of variables
+      IF aaListCoefficient..Occurrence <> (gaaListVariable..Occurrence)-nNbConstraint THEN
+      	_StartError(<§@187f234d001722d10004§>)
+      	RESULT False
+      END
+      
+      // If an error occurred before (wrong variable insertion, etc.)
+      IF EncounteredError() THEN
+      	RESULT False
+      END
+      
+      // Add the economical function
+      nNbConstraint++
+      
+      // Resize the dynamic array, a line must be added for the economical function
+      Dimension(gaaSimplexe,nNbConstraint,gaaListVariable..Occurrence+1)
+      
+      // The coefficients of the economical function
+      FOR Column = 1 _TO_ aaListCoefficient..Occurrence
+      	gaaSimplexe[nNbConstraint][Column] = aaListCoefficient[Column]
+      END
+      
+      // Maximize the data
+      RESULT _Maximize()
+      
+     type : 458752
+   -
+     name : _Maximize
+     internal_properties : CAAAAAgAAAC+4bIeBsDmHFl0QR3LEfknpff6PdhUk+IiAm5YvBD6MpeSeuVpHSu8R2EtF/OWVEJM9FPP6vn+Deg93mrQUct1Pjt3RxVMF0xmLChNLX9ZL7AQbT8GPHAaLIxeaZLCaheMqzQHS58PB82POEHila+OXIMhcyBrjdH+LhQ9yudrTaiu
+     procedure_id : 1766696163981906182
+     type_code : 15
+     code : |1+
+      // Summary: _Maximize()
+      // Syntax:
+      //[ <Result> = ] _Maximize ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	string: // Returns the best maximization
+      //
+      // Example:
+      // _Maximize()
+      //
+      PROCEDURE PRIVATE _Maximize()
+      
+      // Variables
+      nColumnNum is int
+      nRow      is int
+      
+      // The size of the array is fixed, the totals can now be added
+      _InitializeTotals()
+      
+      // Initialize the variables in database
+      _InitializeVarInDatabase()
+      
+      // Trace the simplexe
+      //_DisplaySimplexe()
+      
+      // Retrieve the greatest economical coefficient
+      nColumnNum = _NegativeMargin()
+      
+      // Maximize as long as positive coefficients are found in the economical function
+      WHILE nColumnNum > 0 
+      	// The greatest positive margin was retrieved, we must now calculate the smallest ratio (constraint)
+      	nRow = _CalculateRatio(nColumnNum)
+      	
+      	IF nRow <> 0 THEN
+      		// Modify the array according to the row of the smallest ratio (nRow,nColumn)=pivot
+      		_IncludeInDatabase(nRow,nColumnNum)
+      	ELSE
+      		_StartError(<§@187f234d001722d10009§>)
+      		RESULT ""
+      	END
+      	
+      	// Trace the simplexe
+      	//_DisplaySimplexe()
+      	
+      	// Attempt to maximize this array
+      	nColumnNum = _NegativeMargin()
+      END
+      
+      RESULT _FormatResult()
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+  original_name : COL_Collection1
+resources :
+ string_res :
+  identifier : 0x187f234d001722d1
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+  strings :
+   -
+     text :
+      en-GB : A variable with the same name already exists
+     index : 0
+   -
+     text :
+      en-GB : You must insert one or more variables first
+     index : 1
+   -
+     text :
+      en-GB : The parameters don't match with the number of variables
+     index : 2
+   -
+     text :
+      en-GB : You must insert one or more variables first before maximizing
+     index : 3
+   -
+     text :
+      en-GB : The parameters of the economics function do not match with the number of variables
+     index : 4
+   -
+     text :
+      en-GB : "   Total"
+     index : 5
+   -
+     text :
+      en-GB : "Base variable:"
+     index : 6
+   -
+     text :
+      en-GB : The number of constraints differs from the number of variables
+     index : 7
+   -
+     text :
+      en-GB : The total of the inequality must be greater than 0
+     index : 8
+   -
+     text :
+      en-GB : This linear problem has no solution
+     index : 9
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

@@ -1,0 +1,358 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : WIN_FreeSimplex
+ major_version : 28
+ minor_version : 0
+ type : 2
+ description : ""
+ subtype : 0
+window :
+ name : WIN_FreeSimplex
+ identifier : 0x270e3d7f04507f50
+ internal_properties : CAAAAAgAAABjQNw9dUKVCLNZvvPNbVLlxYfp8Ni2XGQH9EQdDkwCJMk8y1qkDB/+/SXFgT7MuHyqg8DoihK4ZSq8KEzlBovWQrrrXahQYppjferGcUi386NglLAAvxsOx/MSNGWrT8p8mOdzy9E7kHTZFaUtS21nbhKOJz2R7+cfEXpoPasJweFhrpGDpmvyo/X3KJEHE41uhq5T0jx5Tl/qEZ572jG8chgdzrd3It/W0bAb+jYxKH9POqG6g7181Q/Y8Il9IbZqd2T3DADwU+UPtm+/Or0tQghscUIV766qfER460nmnkk7GMfv+r1dSDP0Bzl7M2UuSuDQDb1Wkp4eOegSH7pusd/FhRHSmFmZOQAlA6XQsvTPsA8J9anx3lbvw6uXDan1ttBvQnsb/kwG/QI3IuKryilXF29Tw2yLcPe6nk0b1Fiuwp34DOXTxI05m5NbVG/my33KizZvwnR1NPKJOdaNCQmJk2nhtxrehfd0rLus7ORLec2kyMe+J90F45nuAKyhlKqMm6zix98qPKDuSmUqTdbYeWbgH0YfqegIM65veINQTrJLIahAI4TSou7IDwIiU/e3+XUoToqXW84pQ+G8aCSml+OD6WwhMoWWuoXWwGEjCqtmqkxOJqDaUuBM8uptQnaqAY1RFjP+hnG6Cq+0pfb39xCRqLnuzvCe6MfhUwlinnuF8ZolDWbOehSoKQQWjSeXw5EUwQU9huA+f+IYkeRVFGT4S9VSV8+iCmOZE3bvcej9tRtNNRLeaHQ8S5TN9Gj1vp1IIg3IZGCLyj3vYCTdifvGzN2D08de8uLCsaFpJK4EXkdYQ8k3xiuxid4U4R04Vv6P1xkuOszl/HgUuoyqtlczV+XtQfemv+Vq7Q==
+ properties :
+  width : 399
+  height : 348
+  widthClient : 397
+  heightClient : 316
+ controls :
+  -
+    name : BTN_CALCULATE
+    identifier : 0x270e3d7f04517f50
+    internal_properties : CAAAAAgAAADXKXrWZrlDRbNadiHiFbQ0T1YpOnMA+Qx2okRLas5cXgkTNI3rcpH4i64IVv3DaQs5CyvMJQ78JJYGvyfndV6jWjsa2TTSTwexuVblsZMf3nWpv36S5N9GlV8h+JhAdlKBYZP3AGmmflNcLwGSW9jxzmXHxYITgJgIlG9gHNr5zhCKMufGgqBaZIaBNKCiiXT5c+lzfTdlvgT/1N0rZpCJF1hL4encMVVXOxW0J2Qwi9ayt6DxC0fd5SqZFKmjhKvgFkYBa+QGmfRWv0BTfRVEAYnbbMybzZfw3ayVaFoFeNMpul+PV6rhVL8XTuXoYfJMKIylg3x7MBOjWv9BSW6e88ge8/mI5etMyOlu8M208b6eDdxTSjfQCYjTGph/pe0djq8tuJtdJOUsKZcVx3Qh+vpuGU8gOM9kYFujpdyS3Qcks2D4TsfXaadQQE3Hy5zDBe97VBzUfa38o4zDr6CfTT52gsC2TPC6CNhi4+UQNQNq3q7hdHbIeCLcSYR9XwcDMjlFy1xSKDWhZ2jiNIsGUM0QPGCECBn0ZxwOPydt1B7+EKEwPCpAedmDH2RHm/LYZmTUL57XKUnDqs+dIzBG2RhAeUMxnizuj1kkKCo1Vb2m/NVcrD/CUItWkDMAPS8DbENh9xPhFWVemyUiaOgyqXGwu+8dxj5T3LRVyKgnLkO+OiswnPU1bzmo8DGpVb21+FyJf6i2oN6wrAAkLklDnuqEHizdlKoyKIA9qHrl7CqSdxa1VmXbxD4HNsjZtSzMf5BG0q0rGW/QxiEcBXzMoFkzfIlrXsDp1CuTxi0et9awaMX7f/gWhcJbwNwItqpwJUAuj1av8/aQvXfYf0nxcbCWbRE/FFJZVi8OFsmj/ZPkJH8l9nsHZlV3Hf2meCOai2OUKyKx4dIKXjvLtfLvr4mkL6+VCkjgTivLT8j4p1We+0EXtWA1xk2Se+wrelQp9oiWJB5WcTKqA4g=
+    properties :
+     x : 6
+     y : 256
+     width : 138
+     height : 24
+    type : 4
+    code_elements :
+     type_code : 4
+     p_codes :
+      -
+        internal_properties : CAAAAAgAAAA5eyxnX4yNxlHaNzhkb65/eYsO/FY3J7Oh2PM+eFVJ0UtegKCNKt2RUpnv5vRKQ7xJvDjk5grlOUHQ++yBXyvHboanyhqXRwmr5RWD7zkNlRQO197zKjlYG7vIIwBoyDMybjL4l304nFJkhd4=
+        code : |1-
+         // Variables
+         aaConstraint is array of TABLE_Simplexe..NumberColumn-1 real // Don't count the "Variable" column that is hidden
+         aaCoeff      is array of TABLE_Simplexe..NumberColumn-2 real // Remove the "Total" column and the "Variable" column that is hidden
+         sString      is string
+         rZ           is real
+         counter     is int
+         sResult    is string
+         
+         // If rows have been inserted, try to calculate
+         IF TableCount(TABLE_Simplexe,toTotal) > 0 THEN
+         	
+         	// Initialize the Simplexe
+         	Initialize()
+         	
+         	// Add the variables
+         	FOR I = 1 _TO_ TABLE_Simplexe..NumberColumn-2 // Remove the "Total" column and the "Variable" column that is hidden
+         		AddVariable("x"+I)
+         		
+         		IF EncounteredError() THEN
+         			Error(InformationError())
+         			RETURN
+         		END
+         	END
+         	
+         	// Add the constraints by filling an array
+         	FOR line = 1 _TO_ TableCount(TABLE_Simplexe,toTotal)-1 
+         		FOR column = 2 _TO_ TABLE_Simplexe..NumberColumn
+         			aaConstraint[column-1] = TABLE_Simplexe[line][column] 
+         		END
+         		AddConstraintArray(aaConstraint)
+         		
+         		IF EncounteredError() THEN
+         			Error(InformationError())
+         			RETURN
+         		END
+         	END
+         	
+         	// Fill the array of coefficients for the economical function
+         	FOR column = 2 _TO_ TABLE_Simplexe..NumberColumn-1 // Remove the "Total" column
+         		aaCoeff[column-1] = TABLE_Simplexe[TableCount(TABLE_Simplexe,toTotal)][column] 
+         	END
+         	
+         	// Maximize
+         	sString = MaximizeSimplexeArray(aaCoeff)
+         	
+         	IF EncounteredError() THEN
+         		Error(InformationError())
+         		RETURN
+         	ELSE
+         		// Divide the returned string that has the following format: |Z|nbX1|nameX1|nbX2|nameX2|etc..
+         		rZ = Val(ExtractString(sString,1,"|"))
+         		sResult = "Z = "+rZ + " = "
+         		
+         		// Analyze the rest of the string returned to display the results properly
+         		counter = 2
+         		WHILE counter <= StringCount(sString,"|")
+         			sResult += " +"+ExtractString(sString,counter,"|")+"*"+ExtractString(sString,counter+1,"|")
+         			counter+=2
+         		END
+         		
+         		// Display the result
+         		Info(sResult)
+         	END
+         ELSE
+         	// Information
+         	Info(<§$0001§>)	
+         END
+        type : 18
+      -
+        type : 161
+        enabled : false
+  -
+    name : TABLE_Simplexe
+    identifier : 0x270e3d7f04527f50
+    internal_properties : CAAAAAgAAADFR6jlhL+CQtIpgjTLbdzm1+oZ4qTuAKXrZgHltOrq91EgjxFgKbdRjNT8QWkXTLaPeVOarQbydK4q0OkgRddJTvrFNUO8j3f/m+VjbFd29M1YnNjuxvIjR39zyf88USkJI6o+DZB2g86AfknzofmwOuxpf+cmbGSepgNasBxGxTsrDMuB75C2TwGByrkeo0N2Pkld+BcQ8UzfqT4S3tYnqxsdQpndP33tKrYzIDVvhGz9Fy2dA8xdOJh6zxUR5W0SrDGtWdZ1ZAJmRnTdx9leDzMxlNg9R3lo/v56vS3Zm4zeZ7FYcpzszx3BxXagGQnovQigGcEKyjlKRjHf+clPpypd7CNwZmaiiqvmbAIH7xmGDlEvYXF/6Y/LPmMnQFAR59MFGpV89Mwz04DwaF6L5LcrcW2FX9uPsJDo2EviXGCL0ynp5U65AOrv0uClbql9RQ074hKsgowWBlHS1V87PfBV5xnFHojcc9x/l7kk7NwvpC9kHP7KT35txJIt+1r6rRHaj6shOZZ7ajBFH86E1FhEHAcvz1wKycL9BXdJefakwO9mXZWabAQ5G1ghXmjYIFQf9HJaTM1v+MX91ymRZ+GI2XCDRJA2qllbKGwoYt9n3+r3Wn/J10ahdZCn4DkDFRJbUZGsTrRCZXFoisGWUJstfOjnwLnEuN4e8MQLj7cdO9xVNCpsE6aaDNXWEG8eaw9oG9KN8lCCKIiSo46WCqKxoJP0MA+R+ihw49TMv5WWIqxl9lFk5G2iP250X8FaUg4HCPaqMsgtG2nSmbAKO95OuF1QuMUSRqoVKD2C7xcfxa1slaQxpe2wiMGej6HuDwKEMlyPdB6vWxGfWk7ftexR2nA8LnrjElp3cwu42DmaJoTH5hawZjdoGXjYI8QlSz9oPnbTNQr+5UGwH++z14kz7NjZXK544r5oOulvcYFZzOK9poiTQT2+RuixTgaD6WUnb801zjvP2vqfrMC9NsNkUZyczDcUMVuGizfCLekIzKBLAHTubicSsMOXXJJ5VpfBh4AJhqSQkTAkzVQ+3fGhmnCd1jxn/A1TRgQR+rb4TGO8Dg58BBSGuKNRaoasQYXQOr9lOvlr5mjQBiHi8ulbIO9ApkuLe15rVPtbGXhe0y4FNhFacEHzwSZDnVvNqGI3hcKvBbfiW/PkfMw7M56KvxA9EPEuCbAPz1BXKUZ3mFUwXt06PyIIWIC1FQZSbN1Z6lTlOXiTld0RiTg9KNfNkjOPKn2mQ+hBuWPipL/W9DUSZxS8VoF8LWMOc0cIfyU4GFtOKOQBmilarVHvmUbAC74kiI3ZBCK9fzh5Ceum6zQ4RvhRxiby4BZjwuPXA3Zmd/1tohxVYLJ+Rf8TyV8yXDEpj6SzWeeseWhiO4aPSZiN8R7ViHvhS8gYQ/rGeYOsSFLpSpUodSCSMU1R5fePCyAriewqZX3+OMVVUk4Osz7i9h7rvqMxSewUJRir0Rp+ikn3lO+sVOI+wIOylgcn0AAlBh5V9GDQ19DMrxfAAMsqTqiqo9ZitcHZW7Bf49ITiDqnKLXClpxhx3KwBeXBYMQrvuXQa3l4coqbn3lxSTZI3gWS/nXDcMFG8MamqjIN4RXqCwcnDuWAUHi3p5x6oezWRpwnidsU4GbRLzlCRWftniooxFv6F2TAgJetaQ0FTxUF5SPPU8XU0BhVOHxg6L7GEbd1hhU3nIDGYX+vvEjvl+sHteUkk4DnCKB4s3tXteiKK1CeYk8evASda/wTVQhKjys7pHyVJXdTE1GFC5BmJOCCwYsNT9L/jQacM6CjzEE7Kl7pBWbiIACC2EBgbidctQeng+tveB2D3+i4uO1IMXDED/4icZdThPuid6yJd1HqhPpZoIzBWZlmEWzGSG93OIdcipxB67sLDxTeg4yetPqaErJC9AUlzmmvnBSu0tjFjzbPqnNFBNTx5feXPf0T4gy5VwDlE4HcV/LlCScww4IJ7QAGNPDXoRwn4ixWb+gAjw4/BNGMzudewvmpPXsoM3re4PrsTy8t3rChK9ZKpeAwcIl8TutPpPMt58d1nzHdKq+EI9873ct4jeTeDaW23vnX58/IgJrAlaGHCXGU0dZmKh4S0rJ99iTlQPD24UGsM0UqKvLPcSR18uY8mVgCZxzWenFARt5wxyEmQQsJyZZ1z0LGIR30+D7yvBaJ0fgQpe8YtPIz5o0hRP+NWMU3HV/AcmM9Xuj9Oi57S5x4is35oj1bMYJoeI2ABkiELqTlL0nGM+JTkmOvme/Hf8FI04s/w1DlJdM17UvKMjJTyOC1ChmeUKNkaX1Wpsrj9mMN/K8ozZoIL/EqdCYICbydYmPtDynsuCxX/uCWa3eRKv79QJzE1RmfwI6BmgJrCm5xBASWznCLrUIiAIn6bnxB6ORJDXAn+pXY1GZzrvaEZlHBSVpFj8kNTJ1rBYsVPKQp56jeY0kOdm6RoW8jOVwBE8xuL0OuLwan8iVNwXsFt4T39Qd60/TZ8FxD2La4XPfFV60b7BkQwP2tCMppGvhXSH/DZYPQS3ZFEvO/TAvUuColthphlmqJrg4kdPkW8vax8cJr5mEHFP6NL+mLPOs9szZhrTceNP67sv3zCXqgMfF2tN9BNFyVKIPYze2SxiJt48K+dLc53dZooSIBFWACB6WcVXbu61Lt+a2KESRQZU29iXQtGFjbpo8PzM/C5HyIvxyI7NelnrCU47EFwa5mnsu3cqw8wklo4KsoDFPK7eqL02fl56PJ+h036smau5R3JCL8E08AH72Uvw7ev9vCiUFT+w3t/7BciPhnRhGBl9YZOGiDvEQuGnFxdKSQxeebAgGDbkawKTmf4auFXWD/TdCn6GWulcafnwwfwIhlfhc6S52Ot7SzNcXMDcUYy1HgW2DWPn9OFtsEmaYYQURdzJzKrM7gTDswG1RHd/twJo5O7BDmrCuk/8A56Ilt2SRoy6wiklwKqU+anYL/uM+Hywh+ulvX+ZDzFbBztWdnQiwbwIdRdSxwqEdxIkDuK7qhYQnCOTbbg6FYJipYYlMQjOn7vyK0FVIdCH2qv0q4AUzLpOQomx+4w6UX/j8SgqwCq8AbIX0xVrvbUR+uZs9IluJ49NdT3GTRvE3FeZlO6e8IvQLbYFOUH2nrvanwXKWZfq33yDh2zfk2w5LHnORjY+25iUR/KbEKgrs1639NRl8ezA5bc5xuNJrOI9rlMVRS/rbFKwsqRsUX2im74Ge5afM+CVQOXTHu5Q8J9qggi3DfPJizv+iEyCsNGnxfe3sgps8o5TDGjWI9iDiKmPCfQ0x0e6uG1DOeheXg3pZ8v94SqfPDUK0xNRyyC1lM+6I3LBRU0zOD7gHByRsY0mkfqBPK4v/v8tJ8XDiwrbsUH0lScJ9w+KhMVHYXULmc8BH0CaZ++1mvHVJwpQHKExrH3LHhkG/x0uAP4bINqe9AywDWkpQGCgTqzn3nmW5RVBt/BCeqeFmCyDfo7Vmvgu8H5gC4OEiUW4eEADU0lm4QWHCEnINOKD3YwgSg0yg80GFvZz4pAvk/usb5txohG30mryP5uiZHl/zEf/d15HaZwPRghgTGpU0CjlgOH6Jp8pk3VyUUAd6NWyC/EqXJqs0Efv7a9LeK4YBcvG+nHhwOXveYTbUdHXnHBUXHAIYkvqYfV6WRMh1nrVX50SgfQFASBCsBYGGK7E53LZ31laj+Jp8Yfg8SKZJNRSPfFJd6hP48Nkw93Dhb7eS84gBWD6xRIJOvVu35I1XuTStgQsxtLUwY05ElBMGJTuh3U5ri097Wjeu8BYnJ59UXo6DlwpPL3uG4m/VFkdWS98HrTZJcZ8yW7R4K5CsykmJ8VWyuJSKNDS7i1ap/Yh1ukyOZ6Hc/I0AbFOer+smQPLSa9tbCGrBxvTx5UDC0foFe83U/0TaLLkQLkC7D2LXZLNBZXd+pvjgBQEcVM8Eu5torQL2oax+piMxJdjjmPO1L6suepZ+q/7kjSDWZ2GlBKS7XLNjYqxyDIzL0wDDAzAhy/ufLCTPiuE9GY0i82bqMVbmnTQXOUFNxG7XneQSo1e1ugNskBBsnhviqKkfPDcEAgtwTWRmtIRI4bd9Sg9wKc8/f6tNI8troynU4EtVCvmYncnZ6mbFKuhtteI2yOmIMOCVyj7C3wVbxYhIsnLRGdwZZ2ZF2MOKHPQHpxzICCd+F/MotSMlKSqyIRKMJC9bAgvA8iJZF5DahwiZvrbl9PKznC9VRhV1mJLBz0JUtmodjknDKxS3c8wtL3ROzgavAvqIeFss7wXjPSgdZF6FcMN+C41RxJ+DoSDpykmUGAuP2Me1PwPIE5blcaPtaa+wxLpKFPk79lLDvKg/fuQmVtlJxQVEJrBPBjIa/olBY91tLBDRqBeulM6s3AQn1rFFFZIy9FSsF7QDVUolt0itfww45sOZU5vPxKZH5bJh8R7JFSrlcWC9GIDlTaB5BAivIhv+mtDTmQkEE1fZ3W8td0QTY3fLaPJGOqj1uc4mmssXqN08d9fjAb77HZDwDb5XnEJnJ6UekEDK2/QsdQ1LbppB0uaunWO1V4SfEtlf42iZFoyq6Y+BRp4aisyu3TOCt6BsgkS+HTcL6yxcwMuNJRtOwGbK5ilwUSAFqOM3IC9fMjkE+ixFZcPbv0T7RSYv6rHaACokgbCWB5/633Tbt5TsfkM84Uutqlh+WbCNkoxIEzxrGr/y336mFdjDgqCO2LOiyev2YJSjQeh5mX/OtOGPh/RTcpz8p07QBYJM7ueqieMKaY8OO5aYQcbGFMB9Ob3O+z1O+kRQIZMdo6Y9UoFPU87IAmq50HDUnpeZ50gr01HLVyUyPLelJkk2zl19jineo9ZMq4ZYfnR49ImT+ozJoBIkXqPZX75CUCTr3lWaJAHfcY9qqq77rBgnT+hLitlL235JCDQ9QCEMLDQBybsh5EE81klsXN/Lu5bN+sb8VT54ydtpK+EpttEYT6sgGEZW3goYY8nNxK+VpzFZq0m4VB0e1O8ZNlIyEzkWitd6xvccuph0+7I0Hb+UeBFpj64yzWbR0wV+2rX+6IfeVqdFTuh6dsTaKW+jJXMadtnqPeXvi0gJLlND9GzVomrTq3V6vooFP3ZXfbY+YXq3uAtBZeiCpIuRGibeH83BkMM2Buj5t/kTKRD7rUapAxXL8/x10yZlVRuP8xrGN8sukmDpnOtGStWHdGqqQQq5Gyl7bt81tqyrex8m9/jgGlgrhei4ZpHv+yXWUO7ONtvhotPpjuUqY8/+SkoMKsxkY6uHWaJJJ9Vz/hfsUO9xyt+QZksnu7j7DXpG5yFKTDZP4/Gj8dPaaZu2Xc7D2HEI3XW/tZeaSXQtty0j88/qETgCdIRn4/NOapWkhBXIg3yKukkc3vhrVDrOR6vD2d2Ln0K8TjHypHXWm7GBaK/96pCTqbMeq5NjIFAbUt9iZYz3DFkOngmtCuGWKlfSrp+OOvlsyJD+WvaCcGh4Rxv0hFIKMBaCuPDaCGKinwFK4FVWwS/aPlA/mqTjqwgCA+rVLpMKhScVM1Y7ArpKaDxUhhPtbdhFpxavEABA/CiltX35WwkreBlaskFqCpV24MuPMxIBLtgjWzZ6v5XKrFRuHFiZ7032FMSCMCELMUGe/jM2NNrJoqD/spKhW3cLeIPAychykKFqwt6x9RooYmkDNb9l//yKK2jbzIwWiKw9Uq1/gUqCx/W/CQBvLTuNDYF/EV3b2ayb3xuq6antq90GgE6aUUblaCY0sSYnlCeIJ/m1mrAHhMoKSP2+vmaDjyKI+LMVHhHAS11tMnkucP87syW1d6FlBVTGeQEw+Ocw5TitvrLiWWb2ysB30N36DyLkNXUBerUVTSZgdt/rVs2flA9EwJu1F8DjIUJBqnRDlBJAQxSWgFG0C3uNBGDyoyHTUgtGg56TGtTXseRqeor/g7JdCcBKxbPTAylsxvJEwKgF5HcbhhMZI9p+gnRm0fPrvd2i+/z0qs3Z48F3y0DLLrTmJ3EvDzoHr5gX2g2vjma9A8KzsLriCsL14UXo=
+    properties :
+     x : 6
+     y : 32
+     width : 379
+     height : 218
+    columns :
+     -
+       name : Variable
+       identifier : 0x270e3d7f04537f50
+       internal_properties : CAAAAAgAAABT4tHy/KsrDrC19dlGuBaXlfG9JwIA4hh3E4xdZTtabxyu0YyPU5QkjkzT1a3+SSWXF0HhuM53lj5y5jK9fifYiaInqJyeTlUI44WhaqLgrBJgi9mrVFUPueWwgf21HH6/vgQV/T+bsvMCxzzSBiAOmg3Crzaj70qSzzt8YLc7I1u8dsrTn3GV1eHGM6a6LUiOl2A0gfMVt5A+VZm2tcm7b0iNKQhJXmJ+TAw7zAz4asT/RIC0
+       type : 2
+       content :
+        internal_properties : CAAAAAgAAACDWu1/dQEOTu47MOMT9/929+drmoGS94l7JLOUPjK9JavTNDGBN7WVRlX+Y30gJFEOzZw7nZueVM8kYk2hlOFLC7XqvMdtgUlsMgqu6LJHMzvyPfYGf1BTmvbwREq9J8dX7uawxIPY9amTzRd/2pQZpeCW5HDJmxF1tdoFJRT5sHfMqfbX2ZS0XmjqZv8P2vIW23ta3JIlGPdivB7Pnr9QBtQd+EeQcfhOBWd7ijlYgIS+Dtzcy5rXz5RVXTjJrqOxpZ0W8Xg3OoJr4xl7RW0/LB+VAcjlO/AeVzp8TiJ2gO9D4lVLQeuGHIMZCDzyYCzc6oguF6OSDhbfLv6OTqcULhF+i1y7d1ng+dHqTCfW/zEmW6DvMAsULONrPW5YJLgar3y6Jm1NZ4vN8jtFty/hR55wAz0fj/82DVcQ4wFHDm5VSBoilOtdEGsocmaHK9jAFnQeoUlb/QEUu2MYVyx3NUNU3axyPSLKcBtmhjRdjUK/rffH3MGz6LKTObTWHsilfD0h1RpztU9w5mqAnzX7ii6Vf2O0esj1StQ26evvecyjc4d503w9KQhj8xART2eGaiNvfeX4wnSA5phsocA63RhnHl16XRmhyhDjWI21AfIROckpfo9hE7841UcEVhZZfZrioK1+Ve2eGmCCSPzx4fu2afUCLXQDLhf4Egxw1kW5U9ftz/FqBgMzpGI7I1z/WG/yY0EHpzYY7a5/RxPSOBM5eQVxIBEQgXYGB0ygCxXA2mzVY7oKvoJ2be2g7eSJXTmyqJaKbQsXRVZJQpQdIt0CVRXehLQuxSwLal1eqi9yMFYtKW429FZaopeAm2nyVpnz9Y75MBgCBlzthEHnhblnWc1uMCSvXneFkIDZ0L/xoPrzI1ymkf6Xqmtk+PdYjhEQzUHVH3NZISuQC8vfmQNguus9EyUGbuqfkpc87UCZ6kef1hPVjMO3jzBGA1P6VHEPOutab/cyt3wgZPKKfDit/iVKQuGkRRyQYvDSbapA/br1ni8l+SYzkw61
+        type : 2
+       code_elements :
+        internal_properties : CAAAAAgAAACVbIAZKIyLUtOx/TRl3LdawH8KiRIbZVPHIi3CQG0ZQWORAsfR1LV9KK1m6uVL3Trxd5kjIU0MB2uWkg==
+        type_code : 3
+        p_codes :
+         -
+           type : 276
+           enabled : false
+         -
+           type : 277
+           enabled : false
+         -
+           type : 278
+           enabled : false
+    type : 9
+    controls : []
+    code_elements :
+     type_code : 9
+     p_codes :
+      -
+        type : 35
+        enabled : false
+      -
+        code : |1+
+         
+         
+        type : 19
+      -
+        type : 22
+        enabled : false
+      -
+        type : 24
+        enabled : false
+      -
+        type : 23
+        enabled : false
+      -
+        type : 25
+        enabled : false
+      -
+        code : |1-
+         
+        type : 33
+      -
+        type : 230
+        enabled : false
+      -
+        type : 241
+        enabled : false
+      -
+        type : 263
+        enabled : false
+      -
+        type : 262
+        enabled : false
+      -
+        type : 222
+        enabled : false
+      -
+        type : 223
+        enabled : false
+      -
+        type : 224
+        enabled : false
+  -
+    name : Information
+    identifier : 0x270e3d7f04547f50
+    internal_properties : CAAAAAgAAADs20wpx37lUPqdmOPUfv2rdXIvc1DOdTbwB4QprSH7nboEFimQqYmIDLfxrrV4PnZNNImk3K+hp/wjo4rRvvZpnwZ/fULZOWwzYYsBoNdKrt4aLo9VWd3kBsVpT7x1bSflzZ+b8IKUW4otur62/cT5lL3p2vvmXVQ2PM4UylraDt2s2UPm9xrrxIjIzj4kXJPzNQ8g6DAfxARvSUm2xMxkkiTQqmKxbQCDN21TEadBaCbh6KNpuDTPfH39AYGypsP04JLIXNyYbngjZuhqiA/5i65KiRyl4XR/I8M8A+zAK78jZDeoEm0lJz8Isxv7WP5fUnJ98EcYYoCeLQcXs3O3x9Ehgg9U2l9VE5I0r3GSc2j0wl+gMQDsWqCkqMXOGDiIoMcZegLQDi2lJQdjq+wjNdjmHQGoLKwfz2iSbegRBZGBOH56T6gBaiS/GvKVSAEQcFxULiR02FslRRVSP0RUOJGge3TF38s04ySdEegGdeVuhydxE//APtc0VU9dsrntFRtXvSV3SpdaK+soFY2GsPBTuJyRVEqTWHewDq02uzVpmJ/bFyl5pgivFR6loDjF2RTB8zDY3wB0qR/LRlTMcd53YdBaziNWcp+5MFajOScPSWCUZzg714wCe+8=
+    properties :
+     x : 150
+     y : 256
+     width : 235
+     height : 64
+    type : 3
+    code_elements :
+     type_code : 2
+     p_codes :
+      -
+        code : |1-
+         
+        type : 18
+  -
+    name : EDT_VariableNumber
+    identifier : 0x270e3d7f04557f50
+    internal_properties : CAAAAAgAAACRtcNB/87i/cntl7dJN/Wr3HYApItbNMENLv/EZxiCCZWpxn4m4wYNaGw+4xaEKs26GzDPCry/+c01G2jBc1/UMyeNXrs368RIRSJG2mFsNsEFh8ApR0lGjfXEB1hnliOn3h/rgpgBz/u7iG2bAqO9sKb+RiWYm8r1bgE+2DD4NTsD7tKOtcvIoRpjOKsInsYJA8CZMgr8vJfbDOmRacsyetwXTiQmhviBj5RqxNQaFIsmPfV3625Ly2IU/33tM+a0e6co73jEYWi2kojNP63RbINaqspo8D8ebQjddlAUUcEzizIj7Tl78fkK7TsGOzuz56MRuoe+TSEWJ6cuVGpcwa4QZKMzaHlFpGa5T9tYJD76NXMgs0s2QZXm9nUhlLkMVl80njj2DjYBeFsuHYeaDZ7rCdtfHeP2Qc1Fr0EJ9HjSHX5ca4qN8Xq1PLuaj9JJCYlv8z751kcSURrz4r0JfIl/YnJ5hDXm5tSvxxIKfcueyCcD2lJIkDNKkwxtZEcTOmX/qIwCUOyzwtgWuCacpaDqCylHsvC8k4p9XGXV/YR5pJL6etmIa9F0WvNF+4CF728/ekUr5PQm4LaRwVB1g/YCnfAPoBjQSq33d9r4AeGpT/E1glHmVH9m0Qmmd+sBIiiudyOGAluBsuahew2MSDmAVZDrYz5GF28GaCC8HNCSOCHJIskXBuIR74dN58UsModuVjpLJo+mZrNYnbBeBfZ+yloJJLKPqImbqa45fkmNxmTUNvpe66PW3gohLpS6M1JhhleA/yCC4egi/dW5u1CF/xEzbjv7GisqI+/n/xC3vUQCKBBkH3Ovyv40FShvKYGtyGvB1xTlHgYPhQxnjUy24In71uideH+Qfsj4GHraJIMojDkh3PVFjJFypGiA5Csf1/jLV5iUaJU+AHMSJPWMBJJTLL7JYTNsiNuvsxgigBAlcPxTzN39r6YHqXZyFwA8s6C4I9FXkzNVWfo5O9efYgEUMA+aea9pGNAbYq6aQSFkfEdKEon7XExYnASx4PN97iW52WN2Nd6c5vREqO1laiLva5S7yWZea4beNujBgS49Tv3j/jOi2WWR20Npxgca1gUL44NPiWzuEH/AZbrymFR4pquyprQVxOZeJr3oRtPT+u9HhhVTLTo/N3uD3Xf5vVUmkvv7Ge6fckPSddPBpMYhTOxXOgFMDffqCDEk4Bnu3V4Qe2OmW5MOlfquqf7KLOWGdiCnxbyE/OGzXb1XHN9SDplCAbDRnJn/K9N5E03jZvSnY247TQ0d9y/TDRVtpS9R0/WZwvdy6QO9jFPyIiMTG4551FtxfEFRLZIsn+Ek1hqiyUPMbykJxKKTw3x5ebMGrtSOvUjMttfq1HA=
+    properties :
+     x : 6
+     y : 2
+     width : 134
+     height : 24
+    type : 2
+    code_elements :
+     type_code : 3
+     p_codes :
+      -
+        type : 276
+        enabled : false
+      -
+        type : 277
+        enabled : false
+      -
+        type : 278
+        enabled : false
+      -
+        code : |1-
+         
+         // Delete all the columns
+         FOR I = 1 _TO_ TABLE_Simplexe..NumberColumn
+         	IF ControlExist(TABLE_Simplexe..FullName + ".x"+I) THEN
+         		ControlDelete(TABLE_Simplexe..FullName + ".x"+I)
+         	END
+         END
+         
+         IF ControlExist(TABLE_Simplexe..FullName + ".Total") THEN
+         	ControlDelete(TABLE_Simplexe..FullName + ".Total")
+         END
+         
+         // Generate the columns according to the number of variables entered
+         FOR I = 1 _TO_ Val(EDT_VariableNumber)
+         	ControlClone(TABLE_Simplexe.Variable,"x"+I)
+         	{TABLE_Simplexe..FullName + ".x"+I,indControl}..Caption = "x"+I
+         	{TABLE_Simplexe..FullName + ".x"+I,indControl}..Visible = True
+         END	
+         
+         ControlClone(TABLE_Simplexe.Variable,"Total")
+         {TABLE_Simplexe..FullName + ".Total",indControl}..Caption = "Total"
+         {TABLE_Simplexe..FullName + ".Total",indControl}..Visible = True
+         
+         TableAdjust(TABLE_Simplexe)
+        type : 17
+  -
+    name : STC_The_constraint_is_set_to
+    identifier : 0x270e3d7f04567f50
+    internal_properties : CAAAAAgAAADsbVkqV+EWVdGRoN0SVariuyGRgd7cZJWSl5V9BsaFFZhzU6yOijobh9oFpsr6Ob4+j5TVW6GqzY7tmqfSthvgXxhsrk3gkrby/toTxTmoKI31bCTayypN7tnIJ3mgYs9QEN6/oP6m0RMEuBcb2XgaQZSUay5ACQ4Ea68M7pnQk/x/hMDdZPvydHSFsvp/OQI+ZOl0kd6LNIkpuWAu986w8Zljgk8t6kvjV6ykWMIlvvdlCMT2PdpH8k7sxRysUGEANt27QKoM2m4lAgJ5eeMCoSB6EWZYcYKpdjAON3ti4D+dWLtnqVaEQO9hMD19WU5xPCYNrmmx0SZ3V/nZlEKtHB+hX7keQe0aIQogDzQGeSCX/CuD9YKtr7g/Lap4ko2QPyHI7uWqL0qMcfGXBw14sW7fyJMe4/ofphDEWhVaQ+wCISFh6oicvbg0B8LtX7VLphONFZm0hp69JV5uz+2kICYV2Ml+7+3FDEqmzjdOD83GBQhsDC1s7UE1W1xlMym6X6QK1t8se7WcLk5fOA==
+    properties :
+     x : 161
+     y : 7
+     width : 221
+     height : 20
+    type : 3
+    code_elements :
+     type_code : 2
+     p_codes :
+      -
+        code : |1-
+         
+        type : 18
+ menu :
+  name : _Menu
+  identifier : 0x2880c97b846b42d8
+  internal_properties : CAAAAAgAAACCv199ARoPUfG3WAPSG9eefhOOjWMQrs8CrX6cGGGJPoSHWBq4PXhStOWc1YnAZMZ5+EFR1WTDn8CTOTiyLnXPpAR5X8rsRkPZrm1yZeYDDt4kRzDPLbUf4Sh/mD3kd1D8V2drCFLmjeQhgpw7GKGwHRga+ZdjSqXGIC3LD1RracZ230hOmUJTj+ABDW4IHrw4PflmVGgp8E9KnAf/gselRrzEY90l3Cr9N00QijFYYrbrl4qF4kdim1YX6jYT4ezQhbJsU84ENZsxzq+o0JVHYQ8rxck600VhGV04/ao=
+  options : []
+ languages :
+  - en-GB
+ popup_menus : []
+ message_bar :
+  internal_properties : CAAAAAgAAADc1GQ94o9/SDRDmfM9bKLdXR9VK0rX3qzQNxgLTREwyqjz09Swq+McwjWWBzyo1QjRBk3dY7UbLNe40qK/NzgNxrumNSydD8vUTxqrHrn4vnA4c0+k0w7n04Cixj5n
+ actionbar : {}
+ code_elements :
+  internal_properties : CAAAAAgAAADqbd0dFs5OJmNtfZD3VYVg1RT9jW9zvTguYb31E+Kcf4CHgOOYCGBHKv+MhCphIkktFrPWR7dgwivryY+HY8/NqBb1jg==
+  type_code : 1
+  p_codes :
+   -
+     code : |1+
+      PROCEDURE WIN_FreeSimplex(nVariableNb=2)
+      
+   -
+     code : |1-
+      
+      EDT_VariableNumber = nVariableNb
+      
+      // Generate the columns according to the number of variables entered
+      FOR I = 1 _TO_ Val(nVariableNb)
+      	ControlClone(TABLE_Simplexe.Variable,"x"+I)
+      	
+      	{TABLE_Simplexe..FullName + ".x"+I,indControl}..Caption = "x"+I
+      	{TABLE_Simplexe..FullName + ".x"+I,indControl}..Visible = True
+      END	
+      
+      ControlClone(TABLE_Simplexe.Variable,"Total")
+      {TABLE_Simplexe..FullName + ".Total",indControl}..Caption = "Total"
+      {TABLE_Simplexe..FullName + ".Total",indControl}..Visible = True
+      
+      TableAdjust(TABLE_Simplexe)
+     type : 34
+   -
+     type : 180
+     enabled : false
+   -
+     type : 230
+     enabled : false
+   -
+     code : |1-
+      
+     type : 40
+   -
+     type : 11
+   -
+     type : 12
+   -
+     type : 17
+   -
+     type : 13
+   -
+     code : |1-
+      
+     type : 66051
+   -
+     code : |1-
+      
+     type : 66052
+   -
+     code : |1-
+      
+     type : 66053
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+  original_name : _Vista_01
+resources :
+ string_res :
+  identifier : 0x18805ad1001cf876
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+  strings :
+   -
+     text :
+      en-GB : Total
+     index : 0
+   -
+     text :
+      en-GB : The array is empty
+     index : 1
+custom_note :
+ internal_properties : CAAAAAgAAAC68/W0/adbG0nFCRhrE42B5HRnbDzVHaz86sSQyxlBk7I=
+rad :
+ internal_properties : CAAAAAgAAABoAN7PLpwJW3EiA7WVZdCA5EwrCA1rvutcDHooMWKe
